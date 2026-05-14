@@ -1,9 +1,9 @@
 import { PageIntro } from "@/components/PageIntro";
 
 const works = [
-  { name: "CPD一宮（仮）", usage: "倉庫・工場", location: "愛知県一宮市", date: "2026年02月" },
-  { name: "パークレジデンス北青山（仮）", usage: "住宅", location: "東京都港区", date: "2025年05月" },
-  { name: "都市高速更新プロジェクト（仮）", usage: "インフラ", location: "大阪府大阪市", date: "2025年04月" },
+  { name: "DEMOロジスティクスセンター一宮", usage: "倉庫・工場", location: "愛知県一宮市", date: "2026年02月" },
+  { name: "グランドレジデンス北青山", usage: "集合住宅", location: "東京都港区", date: "2025年05月" },
+  { name: "大阪ベイサイド都市基盤整備（南工区）", usage: "土木・インフラ", location: "大阪府大阪市", date: "2025年04月" },
 ];
 
 export default function WorksPage() {
@@ -12,7 +12,7 @@ export default function WorksPage() {
       <PageIntro
         title="実績・プロジェクト"
         enTitle="WORKS"
-        description="物流施設、住宅、インフラなど幅広い施工実績を掲載しています。"
+        description="物流、住宅、インフラなど、当社が資材・施工支援で関与した代表的なプロジェクトをご紹介します。"
       />
       <section className="bg-white py-16 md:py-20">
         <div className="mx-auto max-w-6xl space-y-4 px-4 md:px-8 lg:px-10">

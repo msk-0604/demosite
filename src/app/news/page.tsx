@@ -2,6 +2,11 @@ import { PageIntro } from "@/components/PageIntro";
 
 const allNews = [
   {
+    date: "2026.05.01",
+    category: "お知らせ",
+    title: "夏季休業および休業中の緊急連絡体制についてご案内します。",
+  },
+  {
     date: "2026.04.24",
     category: "実績",
     title: "大型物流施設新築工事への資材供給を開始しました。",
@@ -20,6 +25,16 @@ const allNews = [
     date: "2025.12.09",
     category: "採用",
     title: "施工管理職向けオンライン会社説明会を開催します。",
+  },
+  {
+    date: "2025.11.18",
+    category: "技術",
+    title: "現場点検支援クラウドのバージョンアップに伴うメンテナンスを実施しました。",
+  },
+  {
+    date: "2025.09.30",
+    category: "CSR",
+    title: "地域清掃ボランティア（第18回）を実施し、参加者42名を集めました。",
   },
 ];
 

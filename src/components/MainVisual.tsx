@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const heroSlides = [
@@ -106,6 +107,26 @@ export function MainVisual() {
           <br />
           株式会社DEMOは、現場第一の体制で確かな安全と品質を提供します。
         </motion.p>
+        <motion.div
+          className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Link
+            href="/contact#lead"
+            className="inline-flex items-center justify-center rounded-md bg-[#e36f4a] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-[#d5603d]"
+          >
+            無料相談・お問い合わせ
+          </Link>
+          <Link
+            href="/download/profile"
+            className="inline-flex items-center justify-center rounded-md border border-white/70 bg-white/10 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-white/20"
+          >
+            資料・会社概要（印刷用）
+          </Link>
+          <span className="text-xs text-[#e8e4dc] sm:ml-1">DM後のURL送付用</span>
+        </motion.div>
         <div className="mt-8 flex gap-2">
           {heroSlides.map((slide, index) => (
             <button

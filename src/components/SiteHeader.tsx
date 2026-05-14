@@ -1,73 +1,116 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { Building2, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-const navItems = [
+const mainNavItems = [
   { href: "/", label: "トップ" },
-  { href: "/story", label: "愛をもっと DEMO" },
-  { href: "/about", label: "私たちについて" },
-  { href: "/works", label: "実績・プロジェクト" },
-  { href: "/technology", label: "技術・サービス" },
+  { href: "/about", label: "会社案内" },
+  { href: "/business", label: "事業案内" },
+  { href: "/news", label: "情報公開" },
   { href: "/csr", label: "CSR" },
+  { href: "/company", label: "アクセス" },
+];
+
+const utilityNavItems = [
+  { href: "/story", label: "愛をもっと DEMO" },
   { href: "/partner", label: "パートナーの皆様へ" },
   { href: "/recruit", label: "採用情報" },
-  { href: "/business", label: "事業内容" },
-  { href: "/news", label: "お知らせ" },
-  { href: "/company", label: "会社情報" },
-  { href: "/contact", label: "お問い合わせ" },
 ];
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const isItemActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#eae5df] bg-[#ffffff]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:h-20 md:px-8 lg:px-10">
+    <header className="sticky top-0 z-50 border-b border-[#ebebeb] bg-white">
+      <div className="mx-auto flex h-12 max-w-7xl items-center justify-between px-4 md:hidden">
         <Link
           href="/"
-          className="font-serif text-lg tracking-[0.12em] text-[#333333] md:text-xl"
+          className="flex items-center gap-2 font-serif text-[15px] tracking-[0.08em] text-[#333333]"
         >
-          株式会社DEMO
-          <span className="ml-2 font-sans text-[10px] font-medium tracking-[0.2em] text-[#666666] md:text-[11px]">
-            DEMO CONSTRUCTION
-          </span>
+          <Building2 size={16} className="text-[#2d2d2d]" />
+          <span>株式会社DEMO</span>
         </Link>
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-[#333333] md:hidden"
+          className="inline-flex items-center justify-center rounded-md p-2 text-[#333333]"
           onClick={() => setIsOpen((prev) => !prev)}
           aria-expanded={isOpen}
           aria-label="メニューを開閉"
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
-        <nav className="hidden gap-5 lg:flex">
-          {navItems.map((item) => (
+      </div>
+
+      <div className="mx-auto hidden h-14 max-w-7xl items-stretch px-2 md:flex">
+        <Link
+          href="/"
+          className="flex min-w-[240px] items-center gap-2 border-r border-[#ececec] px-4"
+        >
+          <Building2 size={16} className="text-[#2d2d2d]" />
+          <span className="font-serif text-[17px] tracking-[0.08em] text-[#2d2d2d]">株式会社DEMO</span>
+        </Link>
+
+        <nav className="grid flex-1 grid-cols-6">
+          {mainNavItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`font-sans text-xs tracking-[0.14em] transition-colors hover:text-[#8b7355] ${
-                pathname === item.href ? "text-[#8b7355]" : "text-[#444444]"
+              className={`flex items-center justify-center border-r border-[#ececec] px-1 text-[11px] font-normal tracking-[0.01em] transition-colors ${
+                isItemActive(item.href)
+                  ? "bg-[#f7f7f7] text-[#222222]"
+                  : "text-[#2f2f2f] hover:bg-[#fafafa]"
               }`}
             >
               {item.label}
             </Link>
           ))}
         </nav>
+
+        <div className="flex items-center">
+          <Link href="/contact" className="flex h-full min-w-[128px] items-center justify-center gap-1.5 bg-[#e36f4a] px-3 text-[12px] font-semibold text-white transition-colors hover:bg-[#d5603d]">
+            <Phone size={13} />
+            お問い合わせ
+          </Link>
+        </div>
       </div>
+
       {isOpen ? (
-        <nav className="border-t border-[#eae5df] bg-white px-4 py-3 md:hidden">
-          <div className="flex flex-col gap-3">
-            {navItems.map((item) => (
+        <nav className="border-t border-[#eae5df] bg-white px-4 py-4 md:hidden">
+          <div className="mb-3">
+            <p className="text-[10px] tracking-[0.18em] text-[#8b7355]">MAIN MENU</p>
+          </div>
+          <div className="mb-5 grid grid-cols-2 gap-3">
+            {mainNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
+                className={`rounded-md border px-3 py-2 text-xs tracking-[0.12em] ${
+                  isItemActive(item.href)
+                    ? "border-[#c8b8a2] bg-[#f9f5ef] text-[#8b7355]"
+                    : "border-[#ebe4da] text-[#444444]"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="mb-3">
+            <p className="text-[10px] tracking-[0.18em] text-[#8b7355]">GUIDE</p>
+          </div>
+          <div className="flex flex-col gap-3">
+            {[...utilityNavItems, { href: "/contact", label: "お問い合わせ" }].map((item) => (
+              <Link
+                key={`${item.href}-${item.label}`}
+                href={item.href}
                 className={`font-sans text-xs tracking-[0.12em] ${
-                  pathname === item.href ? "text-[#8b7355]" : "text-[#444444]"
+                  isItemActive(item.href) ? "text-[#8b7355]" : "text-[#444444]"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -77,6 +120,7 @@ export function SiteHeader() {
           </div>
         </nav>
       ) : null}
+
     </header>
   );
 }
